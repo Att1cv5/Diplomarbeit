@@ -1,0 +1,1836 @@
+version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9091:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus_data:/prometheus
+    restart: always
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.2
+
+  builder:
+    build:
+      context: .
+      dockerfile: Dockerfile.dockerfile
+    image: fakehost
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.3
+    restart: unless-stopped
+
+  app1:
+    image: fakehost
+    container_name: fakehost1
+    depends_on:
+      - builder
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.10
+    restart: unless-stopped
+
+  app2:
+    image: fakehost
+    container_name: fakehost2
+    depends_on:
+      - app1
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.11
+    restart: unless-stopped
+
+  app3:
+    image: fakehost
+    container_name: fakehost3
+    depends_on:
+      - app2
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.12
+    restart: unless-stopped
+
+  app4:
+    image: fakehost
+    container_name: fakehost4
+    depends_on:
+      - app3
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.13
+    restart: unless-stopped
+
+  app5:
+    image: fakehost
+    container_name: fakehost5
+    depends_on:
+      - app4
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.14
+    restart: unless-stopped
+
+  app6:
+    image: fakehost
+    container_name: fakehost6
+    depends_on:
+      - app5
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.15
+    restart: unless-stopped
+
+  app7:
+    image: fakehost
+    container_name: fakehost7
+    depends_on:
+      - app6
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.16
+    restart: unless-stopped
+
+  app8:
+    image: fakehost
+    container_name: fakehost8
+    depends_on:
+      - app7
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.17
+    restart: unless-stopped
+
+  app9:
+    image: fakehost
+    container_name: fakehost9
+    depends_on:
+      - app8
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.18
+    restart: unless-stopped
+
+  app10:
+    image: fakehost
+    container_name: fakehost10
+    depends_on:
+      - app9
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.19
+    restart: unless-stopped
+
+  app11:
+    image: fakehost
+    container_name: fakehost11
+    depends_on:
+      - app10
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.20
+    restart: unless-stopped
+
+  app12:
+    image: fakehost
+    container_name: fakehost12
+    depends_on:
+      - app11
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.21
+    restart: unless-stopped
+
+  app13:
+    image: fakehost
+    container_name: fakehost13
+    depends_on:
+      - app12
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.22
+    restart: unless-stopped
+
+  app14:
+    image: fakehost
+    container_name: fakehost14
+    depends_on:
+      - app13
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.23
+    restart: unless-stopped
+
+  app15:
+    image: fakehost
+    container_name: fakehost15
+    depends_on:
+      - app14
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.24
+    restart: unless-stopped
+
+  app16:
+    image: fakehost
+    container_name: fakehost16
+    depends_on:
+      - app15
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.25
+    restart: unless-stopped
+
+  app17:
+    image: fakehost
+    container_name: fakehost17
+    depends_on:
+      - app16
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.26
+    restart: unless-stopped
+
+  app18:
+    image: fakehost
+    container_name: fakehost18
+    depends_on:
+      - app17
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.27
+    restart: unless-stopped
+
+  app19:
+    image: fakehost
+    container_name: fakehost19
+    depends_on:
+      - app18
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.28
+    restart: unless-stopped
+
+  app20:
+    image: fakehost
+    container_name: fakehost20
+    depends_on:
+      - app19
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.29
+    restart: unless-stopped
+
+  app21:
+    image: fakehost
+    container_name: fakehost21
+    depends_on:
+      - app20
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.30
+    restart: unless-stopped
+
+  app22:
+    image: fakehost
+    container_name: fakehost22
+    depends_on:
+      - app21
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.31
+    restart: unless-stopped
+
+  app23:
+    image: fakehost
+    container_name: fakehost23
+    depends_on:
+      - app22
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.32
+    restart: unless-stopped
+
+  app24:
+    image: fakehost
+    container_name: fakehost24
+    depends_on:
+      - app23
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.33
+    restart: unless-stopped
+
+  app25:
+    image: fakehost
+    container_name: fakehost25
+    depends_on:
+      - app24
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.34
+    restart: unless-stopped
+
+  app26:
+    image: fakehost
+    container_name: fakehost26
+    depends_on:
+      - app25
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.35
+    restart: unless-stopped
+
+  app27:
+    image: fakehost
+    container_name: fakehost27
+    depends_on:
+      - app26
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.36
+    restart: unless-stopped
+
+  app28:
+    image: fakehost
+    container_name: fakehost28
+    depends_on:
+      - app27
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.37
+    restart: unless-stopped
+
+  app29:
+    image: fakehost
+    container_name: fakehost29
+    depends_on:
+      - app28
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.38
+    restart: unless-stopped
+
+  app30:
+    image: fakehost
+    container_name: fakehost30
+    depends_on:
+      - app29
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.39
+    restart: unless-stopped
+
+  app31:
+    image: fakehost
+    container_name: fakehost31
+    depends_on:
+      - app30
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.40
+    restart: unless-stopped
+
+  app32:
+    image: fakehost
+    container_name: fakehost32
+    depends_on:
+      - app31
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.41
+    restart: unless-stopped
+
+  app33:
+    image: fakehost
+    container_name: fakehost33
+    depends_on:
+      - app32
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.42
+    restart: unless-stopped
+
+  app34:
+    image: fakehost
+    container_name: fakehost34
+    depends_on:
+      - app33
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.43
+    restart: unless-stopped
+
+  app35:
+    image: fakehost
+    container_name: fakehost35
+    depends_on:
+      - app34
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.44
+    restart: unless-stopped
+
+  app36:
+    image: fakehost
+    container_name: fakehost36
+    depends_on:
+      - app35
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.45
+    restart: unless-stopped
+
+  app37:
+    image: fakehost
+    container_name: fakehost37
+    depends_on:
+      - app36
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.46
+    restart: unless-stopped
+
+  app38:
+    image: fakehost
+    container_name: fakehost38
+    depends_on:
+      - app37
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.47
+    restart: unless-stopped
+
+  app39:
+    image: fakehost
+    container_name: fakehost39
+    depends_on:
+      - app38
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.48
+    restart: unless-stopped
+
+  app40:
+    image: fakehost
+    container_name: fakehost40
+    depends_on:
+      - app39
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.49
+    restart: unless-stopped
+
+  app41:
+    image: fakehost
+    container_name: fakehost41
+    depends_on:
+      - app40
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.50
+    restart: unless-stopped
+
+  app42:
+    image: fakehost
+    container_name: fakehost42
+    depends_on:
+      - app41
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.51
+    restart: unless-stopped
+
+  app43:
+    image: fakehost
+    container_name: fakehost43
+    depends_on:
+      - app42
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.52
+    restart: unless-stopped
+
+  app44:
+    image: fakehost
+    container_name: fakehost44
+    depends_on:
+      - app43
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.53
+    restart: unless-stopped
+
+  app45:
+    image: fakehost
+    container_name: fakehost45
+    depends_on:
+      - app44
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.54
+    restart: unless-stopped
+
+  app46:
+    image: fakehost
+    container_name: fakehost46
+    depends_on:
+      - app45
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.55
+    restart: unless-stopped
+
+  app47:
+    image: fakehost
+    container_name: fakehost47
+    depends_on:
+      - app46
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.56
+    restart: unless-stopped
+
+  app48:
+    image: fakehost
+    container_name: fakehost48
+    depends_on:
+      - app47
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.57
+    restart: unless-stopped
+
+  app49:
+    image: fakehost
+    container_name: fakehost49
+    depends_on:
+      - app48
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.58
+    restart: unless-stopped
+
+  app50:
+    image: fakehost
+    container_name: fakehost50
+    depends_on:
+      - app49
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.59
+    restart: unless-stopped
+
+  app51:
+    image: fakehost
+    container_name: fakehost51
+    depends_on:
+      - app50
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.60
+    restart: unless-stopped
+
+  app52:
+    image: fakehost
+    container_name: fakehost52
+    depends_on:
+      - app51
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.61
+    restart: unless-stopped
+
+  app53:
+    image: fakehost
+    container_name: fakehost53
+    depends_on:
+      - app52
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.62
+    restart: unless-stopped
+
+  app54:
+    image: fakehost
+    container_name: fakehost54
+    depends_on:
+      - app53
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.63
+    restart: unless-stopped
+
+  app55:
+    image: fakehost
+    container_name: fakehost55
+    depends_on:
+      - app54
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.64
+    restart: unless-stopped
+
+  app56:
+    image: fakehost
+    container_name: fakehost56
+    depends_on:
+      - app55
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.65
+    restart: unless-stopped
+
+  app57:
+    image: fakehost
+    container_name: fakehost57
+    depends_on:
+      - app56
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.66
+    restart: unless-stopped
+
+  app58:
+    image: fakehost
+    container_name: fakehost58
+    depends_on:
+      - app57
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.67
+    restart: unless-stopped
+
+  app59:
+    image: fakehost
+    container_name: fakehost59
+    depends_on:
+      - app58
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.68
+    restart: unless-stopped
+
+  app60:
+    image: fakehost
+    container_name: fakehost60
+    depends_on:
+      - app59
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.69
+    restart: unless-stopped
+
+  app61:
+    image: fakehost
+    container_name: fakehost61
+    depends_on:
+      - app60
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.70
+    restart: unless-stopped
+
+  app62:
+    image: fakehost
+    container_name: fakehost62
+    depends_on:
+      - app61
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.71
+    restart: unless-stopped
+
+  app63:
+    image: fakehost
+    container_name: fakehost63
+    depends_on:
+      - app62
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.72
+    restart: unless-stopped
+
+  app64:
+    image: fakehost
+    container_name: fakehost64
+    depends_on:
+      - app63
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.73
+    restart: unless-stopped
+
+  app65:
+    image: fakehost
+    container_name: fakehost65
+    depends_on:
+      - app64
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.74
+    restart: unless-stopped
+
+  app66:
+    image: fakehost
+    container_name: fakehost66
+    depends_on:
+      - app65
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.75
+    restart: unless-stopped
+
+  app67:
+    image: fakehost
+    container_name: fakehost67
+    depends_on:
+      - app66
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.76
+    restart: unless-stopped
+
+  app68:
+    image: fakehost
+    container_name: fakehost68
+    depends_on:
+      - app67
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.77
+    restart: unless-stopped
+
+  app69:
+    image: fakehost
+    container_name: fakehost69
+    depends_on:
+      - app68
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.78
+    restart: unless-stopped
+
+  app70:
+    image: fakehost
+    container_name: fakehost70
+    depends_on:
+      - app69
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.79
+    restart: unless-stopped
+
+  app71:
+    image: fakehost
+    container_name: fakehost71
+    depends_on:
+      - app70
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.80
+    restart: unless-stopped
+
+  app72:
+    image: fakehost
+    container_name: fakehost72
+    depends_on:
+      - app71
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.81
+    restart: unless-stopped
+
+  app73:
+    image: fakehost
+    container_name: fakehost73
+    depends_on:
+      - app72
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.82
+    restart: unless-stopped
+
+  app74:
+    image: fakehost
+    container_name: fakehost74
+    depends_on:
+      - app73
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.83
+    restart: unless-stopped
+
+  app75:
+    image: fakehost
+    container_name: fakehost75
+    depends_on:
+      - app74
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.84
+    restart: unless-stopped
+
+  app76:
+    image: fakehost
+    container_name: fakehost76
+    depends_on:
+      - app75
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.85
+    restart: unless-stopped
+
+  app77:
+    image: fakehost
+    container_name: fakehost77
+    depends_on:
+      - app76
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.86
+    restart: unless-stopped
+
+  app78:
+    image: fakehost
+    container_name: fakehost78
+    depends_on:
+      - app77
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.87
+    restart: unless-stopped
+
+  app79:
+    image: fakehost
+    container_name: fakehost79
+    depends_on:
+      - app78
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.88
+    restart: unless-stopped
+
+  app80:
+    image: fakehost
+    container_name: fakehost80
+    depends_on:
+      - app79
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.89
+    restart: unless-stopped
+
+  app81:
+    image: fakehost
+    container_name: fakehost81
+    depends_on:
+      - app80
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.90
+    restart: unless-stopped
+
+  app82:
+    image: fakehost
+    container_name: fakehost82
+    depends_on:
+      - app81
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.91
+    restart: unless-stopped
+
+  app83:
+    image: fakehost
+    container_name: fakehost83
+    depends_on:
+      - app82
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.92
+    restart: unless-stopped
+
+  app84:
+    image: fakehost
+    container_name: fakehost84
+    depends_on:
+      - app83
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.93
+    restart: unless-stopped
+
+  app85:
+    image: fakehost
+    container_name: fakehost85
+    depends_on:
+      - app84
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.94
+    restart: unless-stopped
+
+  app86:
+    image: fakehost
+    container_name: fakehost86
+    depends_on:
+      - app85
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.95
+    restart: unless-stopped
+
+  app87:
+    image: fakehost
+    container_name: fakehost87
+    depends_on:
+      - app86
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.96
+    restart: unless-stopped
+
+  app88:
+    image: fakehost
+    container_name: fakehost88
+    depends_on:
+      - app87
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.97
+    restart: unless-stopped
+
+  app89:
+    image: fakehost
+    container_name: fakehost89
+    depends_on:
+      - app88
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.98
+    restart: unless-stopped
+
+  app90:
+    image: fakehost
+    container_name: fakehost90
+    depends_on:
+      - app89
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.99
+    restart: unless-stopped
+
+  app91:
+    image: fakehost
+    container_name: fakehost91
+    depends_on:
+      - app90
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.100
+    restart: unless-stopped
+
+  app92:
+    image: fakehost
+    container_name: fakehost92
+    depends_on:
+      - app91
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.101
+    restart: unless-stopped
+
+  app93:
+    image: fakehost
+    container_name: fakehost93
+    depends_on:
+      - app92
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.102
+    restart: unless-stopped
+
+  app94:
+    image: fakehost
+    container_name: fakehost94
+    depends_on:
+      - app93
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.103
+    restart: unless-stopped
+
+  app95:
+    image: fakehost
+    container_name: fakehost95
+    depends_on:
+      - app94
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.104
+    restart: unless-stopped
+
+  app96:
+    image: fakehost
+    container_name: fakehost96
+    depends_on:
+      - app95
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.105
+    restart: unless-stopped
+
+  app97:
+    image: fakehost
+    container_name: fakehost97
+    depends_on:
+      - app96
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.106
+    restart: unless-stopped
+
+  app98:
+    image: fakehost
+    container_name: fakehost98
+    depends_on:
+      - app97
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.107
+    restart: unless-stopped
+
+  app99:
+    image: fakehost
+    container_name: fakehost99
+    depends_on:
+      - app98
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.108
+    restart: unless-stopped
+
+  app100:
+    image: fakehost
+    container_name: fakehost100
+    depends_on:
+      - app99
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.109
+    restart: unless-stopped
+
+  app101:
+    image: fakehost
+    container_name: fakehost101
+    depends_on:
+      - app100
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.110
+    restart: unless-stopped
+
+  app102:
+    image: fakehost
+    container_name: fakehost102
+    depends_on:
+      - app101
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.111
+    restart: unless-stopped
+
+  app103:
+    image: fakehost
+    container_name: fakehost103
+    depends_on:
+      - app102
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.112
+    restart: unless-stopped
+
+  app104:
+    image: fakehost
+    container_name: fakehost104
+    depends_on:
+      - app103
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.113
+    restart: unless-stopped
+
+  app105:
+    image: fakehost
+    container_name: fakehost105
+    depends_on:
+      - app104
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.114
+    restart: unless-stopped
+
+  app106:
+    image: fakehost
+    container_name: fakehost106
+    depends_on:
+      - app105
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.115
+    restart: unless-stopped
+
+  app107:
+    image: fakehost
+    container_name: fakehost107
+    depends_on:
+      - app106
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.116
+    restart: unless-stopped
+
+  app108:
+    image: fakehost
+    container_name: fakehost108
+    depends_on:
+      - app107
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.117
+    restart: unless-stopped
+
+  app109:
+    image: fakehost
+    container_name: fakehost109
+    depends_on:
+      - app108
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.118
+    restart: unless-stopped
+
+  app110:
+    image: fakehost
+    container_name: fakehost110
+    depends_on:
+      - app109
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.119
+    restart: unless-stopped
+
+  app111:
+    image: fakehost
+    container_name: fakehost111
+    depends_on:
+      - app110
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.120
+    restart: unless-stopped
+
+  app112:
+    image: fakehost
+    container_name: fakehost112
+    depends_on:
+      - app111
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.121
+    restart: unless-stopped
+
+  app113:
+    image: fakehost
+    container_name: fakehost113
+    depends_on:
+      - app112
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.122
+    restart: unless-stopped
+
+  app114:
+    image: fakehost
+    container_name: fakehost114
+    depends_on:
+      - app113
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.123
+    restart: unless-stopped
+
+  app115:
+    image: fakehost
+    container_name: fakehost115
+    depends_on:
+      - app114
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.124
+    restart: unless-stopped
+
+  app116:
+    image: fakehost
+    container_name: fakehost116
+    depends_on:
+      - app115
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.125
+    restart: unless-stopped
+
+  app117:
+    image: fakehost
+    container_name: fakehost117
+    depends_on:
+      - app116
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.126
+    restart: unless-stopped
+
+  app118:
+    image: fakehost
+    container_name: fakehost118
+    depends_on:
+      - app117
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.127
+    restart: unless-stopped
+
+  app119:
+    image: fakehost
+    container_name: fakehost119
+    depends_on:
+      - app118
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.128
+    restart: unless-stopped
+
+  app120:
+    image: fakehost
+    container_name: fakehost120
+    depends_on:
+      - app119
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.129
+    restart: unless-stopped
+
+  app121:
+    image: fakehost
+    container_name: fakehost121
+    depends_on:
+      - app120
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.130
+    restart: unless-stopped
+
+  app122:
+    image: fakehost
+    container_name: fakehost122
+    depends_on:
+      - app121
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.131
+    restart: unless-stopped
+
+  app123:
+    image: fakehost
+    container_name: fakehost123
+    depends_on:
+      - app122
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.132
+    restart: unless-stopped
+
+  app124:
+    image: fakehost
+    container_name: fakehost124
+    depends_on:
+      - app123
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.133
+    restart: unless-stopped
+
+  app125:
+    image: fakehost
+    container_name: fakehost125
+    depends_on:
+      - app124
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.134
+    restart: unless-stopped
+
+  app126:
+    image: fakehost
+    container_name: fakehost126
+    depends_on:
+      - app125
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.135
+    restart: unless-stopped
+
+  app127:
+    image: fakehost
+    container_name: fakehost127
+    depends_on:
+      - app126
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.136
+    restart: unless-stopped
+
+  app128:
+    image: fakehost
+    container_name: fakehost128
+    depends_on:
+      - app127
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.137
+    restart: unless-stopped
+
+  app129:
+    image: fakehost
+    container_name: fakehost129
+    depends_on:
+      - app128
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.138
+    restart: unless-stopped
+
+  app130:
+    image: fakehost
+    container_name: fakehost130
+    depends_on:
+      - app129
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.139
+    restart: unless-stopped
+
+  app131:
+    image: fakehost
+    container_name: fakehost131
+    depends_on:
+      - app130
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.140
+    restart: unless-stopped
+
+  app132:
+    image: fakehost
+    container_name: fakehost132
+    depends_on:
+      - app131
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.141
+    restart: unless-stopped
+
+  app133:
+    image: fakehost
+    container_name: fakehost133
+    depends_on:
+      - app132
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.142
+    restart: unless-stopped
+
+  app134:
+    image: fakehost
+    container_name: fakehost134
+    depends_on:
+      - app133
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.143
+    restart: unless-stopped
+
+  app135:
+    image: fakehost
+    container_name: fakehost135
+    depends_on:
+      - app134
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.144
+    restart: unless-stopped
+
+  app136:
+    image: fakehost
+    container_name: fakehost136
+    depends_on:
+      - app135
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.145
+    restart: unless-stopped
+
+  app137:
+    image: fakehost
+    container_name: fakehost137
+    depends_on:
+      - app136
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.146
+    restart: unless-stopped
+
+  app138:
+    image: fakehost
+    container_name: fakehost138
+    depends_on:
+      - app137
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.147
+    restart: unless-stopped
+
+  app139:
+    image: fakehost
+    container_name: fakehost139
+    depends_on:
+      - app138
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.148
+    restart: unless-stopped
+
+  app140:
+    image: fakehost
+    container_name: fakehost140
+    depends_on:
+      - app139
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.149
+    restart: unless-stopped
+
+  app141:
+    image: fakehost
+    container_name: fakehost141
+    depends_on:
+      - app140
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.150
+    restart: unless-stopped
+
+  app142:
+    image: fakehost
+    container_name: fakehost142
+    depends_on:
+      - app141
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.151
+    restart: unless-stopped
+
+  app143:
+    image: fakehost
+    container_name: fakehost143
+    depends_on:
+      - app142
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.152
+    restart: unless-stopped
+
+  app144:
+    image: fakehost
+    container_name: fakehost144
+    depends_on:
+      - app143
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.153
+    restart: unless-stopped
+
+  app145:
+    image: fakehost
+    container_name: fakehost145
+    depends_on:
+      - app144
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.154
+    restart: unless-stopped
+
+  app146:
+    image: fakehost
+    container_name: fakehost146
+    depends_on:
+      - app145
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.155
+    restart: unless-stopped
+
+  app147:
+    image: fakehost
+    container_name: fakehost147
+    depends_on:
+      - app146
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.156
+    restart: unless-stopped
+
+  app148:
+    image: fakehost
+    container_name: fakehost148
+    depends_on:
+      - app147
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.157
+    restart: unless-stopped
+
+  app149:
+    image: fakehost
+    container_name: fakehost149
+    depends_on:
+      - app148
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.158
+    restart: unless-stopped
+
+  app150:
+    image: fakehost
+    container_name: fakehost150
+    depends_on:
+      - app149
+    environment:
+      - MODE=prometheus
+    networks:
+      custom_net:
+        ipv4_address: 10.0.0.159
+    restart: unless-stopped
+
+volumes:
+  checkmk_data:
+  prometheus_data:
+
+networks:
+  custom_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.0.0/24
