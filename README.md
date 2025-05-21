@@ -25,10 +25,10 @@ Im Ordner Performancetest sind alle benötigten Dateien zur Durchführung des Pe
    - docker-compose up -d
 4. tmux öffnen
    - tmux
-bei Prometheus
+- bei Prometheus
 1. Messungsskript starten
    - ./memoryAndCpuAndDiskUsage.sh
-bei Checkmk
+- bei Checkmk
 1. der Pfad checkmk_data/cmk/var/pnp4nagios/perfdata benötigt Lese- und Schreibrechte (Besitzer ist Checkmk-Image)
    1. sudo chmod 755 var
    2. sudo chmod 755 pnp4nagios
