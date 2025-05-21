@@ -43,4 +43,4 @@ Im Ordner Performancetest sind alle benötigten Dateien zur Durchführung des Pe
       - speichern
    6. Service-Discovery auf dem kompletten Ordner starten
    7. Messungsskript starten
-     - ./memoryAndCpuAndDiskUsage.sh
+      - ./memoryAndCpuAndDiskUsage.sh
