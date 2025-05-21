@@ -38,9 +38,9 @@ Im Ordner Performancetest sind alle benötigten Dateien zur Durchführung des Pe
    2. Nutzername und Passwort für cmkadmin finden
    3. auf Webserver anmelden
    4. Host-Folder anlegen
-     - IP-Range-Scan
-     - Haken entfernen von "do not monitor this host"
-     - speichern
+      - IP-Range-Scan
+      - Haken entfernen von "do not monitor this host"
+      - speichern
    6. Service-Discovery auf dem kompletten Ordner starten
    7. Messungsskript starten
-    - ./memoryAndCpuAndDiskUsage.sh
+     - ./memoryAndCpuAndDiskUsage.sh
